@@ -15,15 +15,18 @@ RSpec.describe "session management" do
       expect(current_path).to eq(authenticate_path)
 
 
-
-      fill_in('email address', with: @email)
-      fill_in('password', with: @pw)
-      fill_in('password confirmation', with: @pwconf)
+      fill_in('user[email]', with: @email)
+      fill_in('user[password]', with: @pw)
+      fill_in('user[password_confirmation]', with: @pwconf)
 
       click_on('Sign up')
 
       expect(current_path).to eq("/links")
-      expect("#messages").to have_text("Welcome to URL lockbox, #{@email}!")
+      save_and_open_page
+
+      within(".flash_notices") do
+        expect(page).to have_content("Welcome to URL lockbox, example@example.com!")
+      end
 
       # as a new user visiting root
       # I should see a form with "create account"

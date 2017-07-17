@@ -2,7 +2,14 @@
 
 
 <div id="sign_up_form">
-  
+  <%= form_for :user, url: '/users' do |f| %>
+
+    Email: <%= f.text_field :email %>
+    Password: <%= f.password_field :password %>
+    Password Confirmation: <%= f.password_field :password_confirmation %>
+  <%= f.submit "Sign up" %>
+
+<% end %>
 
 </div>
 
