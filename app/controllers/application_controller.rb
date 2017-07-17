@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @user ||= User.find(session[:user_id]) if session[:user_id]
-    # rescue ActiveRecord::RecordNotFound
-    #   session.clear
-    # return
+    rescue ActiveRecord::RecordNotFound
+      session.clear
+    return
   end
 
   def authorize
