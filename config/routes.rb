@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
 
   post '/sessions', to: 'sessions#create'
-
+  get '/login', to: 'sessions#new'
+  get '/signup', to: 'users#new'
 
   resources :links, only: [:index]
 

@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
     #   session.clear
     # return
   end
+
+  def authorize
+    redirect_to authenticate_path unless current_user
+  end
+
+
 end

@@ -1,11 +1,9 @@
 class LinksController < ApplicationController
 
+  before_filter :authorize
+
   def index
-    if current_user
-      @links = Link.all
-    else
-      redirect_to authenticate_path
-    end
+  
   end
 
 end
