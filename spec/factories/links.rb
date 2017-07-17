@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :link do
-    title "link 1"
+    title Faker::Hipster.words(2).join(' ')
     url Faker::Internet.url
     user_id :user
   end
