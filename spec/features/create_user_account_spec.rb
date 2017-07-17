@@ -36,7 +36,21 @@ RSpec.describe "session management" do
 
         expect(current_path).to eq(authenticate_path)
         within(".flash_notices") do
-          expect(page).to have_content("email can't be blank")
+          expect(page).to have_content("email is invalid")
+        end
+      end
+
+      scenario "invalid email address" do
+        visit root_path
+        expect(current_path).to eq(authenticate_path)
+        fill_in('user[email]', with: "invalid@invalid_email")
+        fill_in('user[password]', with: @pw)
+        fill_in('user[password_confirmation]', with: @pwconf)
+        click_on('Sign up')
+
+        expect(current_path).to eq(authenticate_path)
+        within(".flash_notices") do
+          expect(page).to have_content("email is invalid")
         end
       end
 
@@ -48,16 +62,10 @@ RSpec.describe "session management" do
         fill_in('user[password_confirmation]', with: @pw)
 
         click_on('Sign up')
-        save_and_open_page
         expect(current_path).to eq(authenticate_path)
         within(".flash_notices") do
           expect(page).to have_content("password can't be blank")
         end
-        # visit root
-        # enter email address, pw
-        # expect to see "please enter pw confirmation"
-        # expect to see "passwords do not match"
-
       end
 
       scenario "entering different PW confirmation" do
@@ -72,9 +80,6 @@ RSpec.describe "session management" do
         within(".flash_notices") do
           expect(page).to have_content("password_confirmation doesn't match Password")
         end
-        # visit root
-        # enter password, different PW confirmation
-        # expect to see "password confirmation does not match"
       end
     end
   end
