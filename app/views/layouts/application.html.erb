@@ -8,8 +8,20 @@
 </head>
 <body>
 <div class="container">
+  <div class="login_logout_bar">
+    <% if current_user %>
+      Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout' %>
+    <% else %>
+      <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+    <% end %>
+  </div>
+  <div class="flash_notices">
+    <% flash.each do |type, message| %>
+    <%= content_tag :div, message, class: "flash_#{type}" %>
+    <% end %>
+  </div>
   <div>
-    <h3>Welcome to URL Lockbox</h3>
+    <h3>URL Lockbox</h3>
   </div>
   <%= yield %>
 </div>

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "session management" do
+RSpec.describe "Creating new user account" do
   context "a new user visiting root" do
 
     before :each do
@@ -14,45 +14,83 @@ RSpec.describe "session management" do
       visit root_path
       expect(current_path).to eq(authenticate_path)
 
-
-
-      fill_in('email address', with: @email)
-      fill_in('password', with: @pw)
-      fill_in('password confirmation', with: @pwconf)
-
-      click_on('Sign up')
+      within("#sign_up_form") do
+        fill_in('user[email]', with: @email)
+        fill_in('user[password]', with: @pw)
+        fill_in('user[password_confirmation]', with: @pwconf)
+        click_on('Sign up')
+      end
 
       expect(current_path).to eq("/links")
-      expect("#messages").to have_text("Welcome to URL lockbox, #{@email}!")
-
-      # as a new user visiting root
-      # I should see a form with "create account"
-      # the form should have a email address, password, pw conf field
-      # when I fill them out, I should see a flash message that says "welcome"
-      # and I should be on "links index", at '/links'
-
-
+      within(".flash_notices") do
+        expect(page).to have_content("Welcome to URL lockbox, example@example.com!")
+      end
     end
 
-    xcontext "new account validation warnings" do
+    context "new account validation warnings" do
       scenario "leaving email address field blank" do
-        # visit root
-        # enter password, pw confirmation
-        # expect to see "please enter valid email address"
+        visit root_path
+        expect(current_path).to eq(authenticate_path)
+
+        within("#sign_up_form") do
+          fill_in('user[password]', with: @pw)
+          fill_in('user[password_confirmation]', with: @pwconf)
+          click_on('Sign up')
+        end
+
+        expect(current_path).to eq(authenticate_path)
+        within(".flash_notices") do
+          expect(page).to have_content("email is invalid")
+        end
+      end
+
+      scenario "invalid email address" do
+        visit root_path
+        expect(current_path).to eq(authenticate_path)
+
+        within("#sign_up_form") do
+          fill_in('user[email]', with: "invalid@invalid_email")
+          fill_in('user[password]', with: @pw)
+          fill_in('user[password_confirmation]', with: @pwconf)
+          click_on('Sign up')
+        end
+
+        expect(current_path).to eq(authenticate_path)
+        within(".flash_notices") do
+          expect(page).to have_content("email is invalid")
+        end
       end
 
       scenario "leaving pw conf field blank" do
-        # visit root
-        # enter email address, pw
-        # expect to see "please enter pw confirmation"
-        # expect to see "passwords do not match"
+        visit root_path
+        expect(current_path).to eq(authenticate_path)
 
+        within("#sign_up_form") do
+          fill_in('user[email]', with: @email)
+          fill_in('user[password_confirmation]', with: @pw)
+          click_on('Sign up')
+        end
+
+        expect(current_path).to eq(authenticate_path)
+        within(".flash_notices") do
+          expect(page).to have_content("password can't be blank")
+        end
       end
 
       scenario "entering different PW confirmation" do
-        # visit root
-        # enter password, different PW confirmation
-        # expect to see "password confirmation does not match"
+        visit root_path
+        expect(current_path).to eq(authenticate_path)
+
+        within("#sign_up_form") do
+          fill_in('user[email]', with: @email)
+          fill_in('user[password]', with: @pw)
+          click_on('Sign up')
+        end
+
+        expect(current_path).to eq(authenticate_path)
+        within(".flash_notices") do
+          expect(page).to have_content("password_confirmation doesn't match Password")
+        end
       end
     end
   end
