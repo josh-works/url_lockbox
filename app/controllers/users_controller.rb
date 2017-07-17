@@ -7,6 +7,11 @@ class UsersController < ApplicationController
       flash[:notice] = "Welcome to URL lockbox, #{user.email}!"
       redirect_to links_path
     else
+      if user.errors.any?
+        user.errors.each do |attribute, message|
+          flash[:error] = "#{attribute.to_s} #{message}"
+        end
+      end
       redirect_to authenticate_path
       # flash notice something
     end
