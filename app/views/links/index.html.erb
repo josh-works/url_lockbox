@@ -1,11 +1,13 @@
 You've made it to root
 
 <div class="links_list">
-  <%= links.each do |link| %>
+  <% @links.each do |link| %>
     <div class="link_item">
-      <%= link.title %>
-      <%= link.name %>
-      <%= link.read %>
+      <h3><%= link.title %></h3>
+      <%= link_to link.url %>
+      <p>
+        Read status? <%= link.read %>
+      </p>
     </div>
   <% end %>
 
