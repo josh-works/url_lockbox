@@ -12,10 +12,9 @@ RSpec.describe "session management" do
     scenario "can create account" do
 
       visit root_path
-      expect(current_path).to eq(signup_path)
+      expect(current_path).to eq(authenticate_path)
 
-      click_on("Create new account")
-      expect(current_path).to eq(new_user_path)
+
 
       fill_in('email address', with: @email)
       fill_in('password', with: @pw)

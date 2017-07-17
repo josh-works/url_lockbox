@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  root to: "sessions#create"
+  root to: "links#index"
 
-  get '/signup', to: "users#new"
-  
+  # get '/signup', to: "users#new"
+  get '/authenticate', to: "authenticate#index"
+
 
   resources :links, only: [:index]
 
