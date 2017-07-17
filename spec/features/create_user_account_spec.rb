@@ -40,7 +40,19 @@ RSpec.describe "session management" do
         end
       end
 
-      xscenario "leaving pw conf field blank" do
+      scenario "leaving pw conf field blank" do
+        visit root_path
+        expect(current_path).to eq(authenticate_path)
+
+        fill_in('user[email]', with: @email)
+        fill_in('user[password_confirmation]', with: @pw)
+
+        click_on('Sign up')
+        save_and_open_page
+        expect(current_path).to eq(authenticate_path)
+        within(".flash_notices") do
+          expect(page).to have_content("password can't be blank")
+        end
         # visit root
         # enter email address, pw
         # expect to see "please enter pw confirmation"
@@ -48,7 +60,18 @@ RSpec.describe "session management" do
 
       end
 
-      xscenario "entering different PW confirmation" do
+      scenario "entering different PW confirmation" do
+        visit root_path
+        expect(current_path).to eq(authenticate_path)
+
+        fill_in('user[email]', with: @email)
+        fill_in('user[password]', with: @pw)
+
+        click_on('Sign up')
+        expect(current_path).to eq(authenticate_path)
+        within(".flash_notices") do
+          expect(page).to have_content("password_confirmation doesn't match Password")
+        end
         # visit root
         # enter password, different PW confirmation
         # expect to see "password confirmation does not match"

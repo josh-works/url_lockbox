@@ -13,7 +13,6 @@ class UsersController < ApplicationController
         end
       end
       redirect_to authenticate_path
-      # flash notice something
     end
   end
 
