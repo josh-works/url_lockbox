@@ -14,10 +14,12 @@ RSpec.describe "session management" do
       visit root_path
       expect(current_path).to eq(authenticate_path)
 
-      fill_in('user[email]', with: @email)
-      fill_in('user[password]', with: @pw)
-      fill_in('user[password_confirmation]', with: @pwconf)
-      click_on('Sign up')
+      within("#sign_up_form") do
+        fill_in('user[email]', with: @email)
+        fill_in('user[password]', with: @pw)
+        fill_in('user[password_confirmation]', with: @pwconf)
+        click_on('Sign up')
+      end
 
       expect(current_path).to eq("/links")
       within(".flash_notices") do
@@ -30,9 +32,11 @@ RSpec.describe "session management" do
         visit root_path
         expect(current_path).to eq(authenticate_path)
 
-        fill_in('user[password]', with: @pw)
-        fill_in('user[password_confirmation]', with: @pwconf)
-        click_on('Sign up')
+        within("#sign_up_form") do
+          fill_in('user[password]', with: @pw)
+          fill_in('user[password_confirmation]', with: @pwconf)
+          click_on('Sign up')
+        end
 
         expect(current_path).to eq(authenticate_path)
         within(".flash_notices") do
@@ -43,10 +47,13 @@ RSpec.describe "session management" do
       scenario "invalid email address" do
         visit root_path
         expect(current_path).to eq(authenticate_path)
-        fill_in('user[email]', with: "invalid@invalid_email")
-        fill_in('user[password]', with: @pw)
-        fill_in('user[password_confirmation]', with: @pwconf)
-        click_on('Sign up')
+
+        within("#sign_up_form") do
+          fill_in('user[email]', with: "invalid@invalid_email")
+          fill_in('user[password]', with: @pw)
+          fill_in('user[password_confirmation]', with: @pwconf)
+          click_on('Sign up')
+        end
 
         expect(current_path).to eq(authenticate_path)
         within(".flash_notices") do
@@ -58,10 +65,12 @@ RSpec.describe "session management" do
         visit root_path
         expect(current_path).to eq(authenticate_path)
 
-        fill_in('user[email]', with: @email)
-        fill_in('user[password_confirmation]', with: @pw)
+        within("#sign_up_form") do
+          fill_in('user[email]', with: @email)
+          fill_in('user[password_confirmation]', with: @pw)
+          click_on('Sign up')
+        end
 
-        click_on('Sign up')
         expect(current_path).to eq(authenticate_path)
         within(".flash_notices") do
           expect(page).to have_content("password can't be blank")
@@ -72,15 +81,30 @@ RSpec.describe "session management" do
         visit root_path
         expect(current_path).to eq(authenticate_path)
 
-        fill_in('user[email]', with: @email)
-        fill_in('user[password]', with: @pw)
-
-        click_on('Sign up')
+        within("#sign_up_form") do
+          fill_in('user[email]', with: @email)
+          fill_in('user[password]', with: @pw)
+          click_on('Sign up')
+        end
+        
         expect(current_path).to eq(authenticate_path)
         within(".flash_notices") do
           expect(page).to have_content("password_confirmation doesn't match Password")
         end
       end
+    end
+  end
+
+  context "returning user visiting root" do
+    it "can log back in" do
+      user = create(:user)
+      visit root_path
+      expect(current_path).to eq(authenticate_path)
+
+
+
+
+
     end
   end
 end
