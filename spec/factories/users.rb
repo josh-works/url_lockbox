@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
     email Faker::Internet.email
-    password_digest "MyString"
+    password "password"
   end
 end
