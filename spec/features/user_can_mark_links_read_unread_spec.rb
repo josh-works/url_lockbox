@@ -1,18 +1,20 @@
 require "rails_helper"
 
-RSpec.describe "user can mark links as read" do
+RSpec.describe "user can mark links as read", js: true do
 
   before :each do
     @user = create(:user)
+
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-    link = create(:link)
-    @user.links << link
   end
 
   scenario "user can mark unread link as read" do
+    link = create(:link)
+    @user.links << link
 
     visit root_path
-
+  
+    save_and_open_page
     within('.link_item') do
       expect(page).to_not have_css('.read')
     end
