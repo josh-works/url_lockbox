@@ -59,6 +59,7 @@ div.read-status {
 .read {
   background-color: grey;
   font-weight: 200;
+  text-decoration: line-through;
 }
 
 
