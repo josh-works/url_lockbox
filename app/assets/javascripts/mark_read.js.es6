@@ -16,9 +16,13 @@ function markAsRead(e) {
 }
 
 function updateLinkStatus(link) {
-  console.log("should be false: ");
+  console.log({
+    link: link
+  });
+  console.log("should be true: ");
   console.log(link.read);
   var bs = $(`.link_item[data-link-id=${link.id}]`).find(".read-status")
+  debugger
   $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
 }
 
