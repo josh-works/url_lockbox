@@ -11,12 +11,7 @@ RSpec.describe "user can edit their links" do
     link = create(:link)
     @user.links << link
 
-
     visit root_path
-
-    within('.links_list') do
-      expect(page).to have_css(".link_item", count: 1)
-    end
 
     within('.links_list') do
       click_on("Edit Link")
@@ -32,7 +27,6 @@ RSpec.describe "user can edit their links" do
     within('.links_list') do
       expect(page).to have_content("Fancy New Title")
     end
-
   end
 
 end
