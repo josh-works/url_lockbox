@@ -18,7 +18,6 @@ RSpec.describe "create new links for a user" do
       fill_in('link[url]', with: link_url)
       click_on("Save Link")
     end
-    save_and_open_page
     within('.links_list') do
       expect(page).to have_css(".link_item", count: 1)
       expect(page).to have_content(@user.links.first.url)
