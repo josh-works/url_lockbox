@@ -30,7 +30,7 @@ class LinksController < ApplicationController
   end
 
   def update
-    link = Link.find(params[:id])
+    link = current_user.links.find(params["id"])
     if link.update_attributes(link_params)
       flash[:success] = "updated link"
       redirect_to links_path

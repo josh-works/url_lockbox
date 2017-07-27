@@ -1,7 +1,7 @@
 class Api::V1::LinksController < ApplicationController
 
   def update
-    @link = Link.find(params[:id])
+    @link = current_user.links.find(params[:id])
     if @link.update_attributes(link_params)
       render json: @link
     else
@@ -12,6 +12,6 @@ class Api::V1::LinksController < ApplicationController
   private
 
   def link_params
-    params.permit(:read)
+    params.permit(:read, :id)
   end
 end

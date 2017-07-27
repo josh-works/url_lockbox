@@ -16,14 +16,14 @@
 
 
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
 body {
-     font-family: "Helvetica Neue", "Helvetica", sans-serif;
-   }
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+ }
 
 .login_logout_bar {
   margin-bottom: 30px;
@@ -34,19 +34,31 @@ body {
   width: 100%;
 }
 
-.link_item {
+.links_list .link_item {
   width: 50%;
-  background-color: grey;
-  border: 2px red;
-  margin: 10px;
   border-radius: 10px;
   text-align: center;
 }
-.link_item div {
+.link_item {
+  margin: 10px;
+  height: 100px;
+  background-color: #e3e3e3;
   vertical-align: middle;
-  height: 200px;
-  float: left;
   position: relative;
+}
+
+div.read-status {
+  display: block;
+}
+
+.link_controlls > * {
+  margin-bottom: -10px;
+  display: inline;
+}
+.read {
+  background-color: grey;
+  font-weight: 200;
+  text-decoration: line-through;
 }
 
 

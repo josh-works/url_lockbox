@@ -1,0 +1,5 @@
+<% if !link.read %>
+  <%= button_to "Mark as Read", edit_link_path(link), class: "mark-as-read"%>
+<% else %>
+  <%= button_to "Mark as Unread", edit_link_path(link), class: "mark-as-unread"%>
+<% end %>
