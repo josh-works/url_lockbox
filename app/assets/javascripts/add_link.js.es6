@@ -24,11 +24,13 @@ function submitNewLink(e) {
     type: "POST",
     url: "/api/v1/links/",
     data: { link },
-  }).then(addLinkToList)
-    .fail(displayFailure);
+  }).done(function (newLinkMarkup) {
+    addLinkToList(newLinkMarkup)
+  });
 }
 
-function addLinkToList(link) {
+function addLinkToList(linkMarkup) {
+  $('.links_list').prepend(linkMarkup)
   // $(`.link_item[data-link-id=${link.id}]`).removeClass('read')
 }
 

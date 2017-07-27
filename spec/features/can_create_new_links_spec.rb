@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "create new links for a user" do
+RSpec.describe "create new links for a user", js: true do
 
   before :each do
     @user = create(:user)
@@ -35,7 +35,7 @@ RSpec.describe "create new links for a user" do
       fill_in('link[url]', with: invalid_url)
       click_on("Save Link")
     end
-
+    
     within(".flash_notices") do
       expect(page).to have_content("#{invalid_url} is invalid. Please try again")
     end

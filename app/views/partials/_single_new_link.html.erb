@@ -1,0 +1,12 @@
+
+<div class="link_item" data-link-id="<%= link.id %>">
+  <h3><%= link.title %></h3>
+  <%= link_to link.url %>
+    <p>
+      Read status: <%= content_tag :span, "#{link.read}", class: "read-status" %>
+    </p>
+  <div class="link_controlls">
+    <%= render partial: "partials/toggle_read_button", locals: {link: link} %>
+    <%= link_to "Edit Link", edit_link_path(link) %>
+  </div>
+</div>
