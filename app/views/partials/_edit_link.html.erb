@@ -1,0 +1,7 @@
+<div id="edit_link">
+  <%= form_for @link do |f| %>
+    Title: <%= f.text_field :title %>
+    URL: <%= f.text_field :url %>
+    <%= f.submit "Update Link" %>
+  <% end %>
+</div>

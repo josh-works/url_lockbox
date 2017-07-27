@@ -1,1 +1,14 @@
-You've made it to root
+<%= render partial: "partials/add_new_link" %>
+
+<div class="links_list">
+  <% @links.each do |link| %>
+    <div class="link_item">
+      <h3><%= link.title %></h3>
+      <%= link_to link.url %>
+      <p>
+        Read status? <%= link.read %>
+      </p>
+      <%= link_to "Edit Link", edit_link_path(link) %>
+    </div>
+  <% end %>
+</div>

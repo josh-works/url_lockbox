@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create'
   get '/login', to: 'sessions#new'
   get '/signup', to: 'users#new'
+  get '/logout', to: 'sessions#destroy'\
 
-  resources :links, only: [:index]
+
+  resources :links, only: [:index, :create, :update, :edit]
 
   namespace :api do
     namespace :v1 do
