@@ -13,14 +13,22 @@ RSpec.describe "user can mark links as read" do
 
     visit root_path
 
-    within('.links_list') do
+    within('.link_item') do
       expect(page).to_not have_css('.read')
-      click_on("Mark Link as Read")
-
     end
+
+    within('.link_item .read-status') do
+      expect(page).to have_text("false")
+    end
+
+    click_on "Mark as Read"
 
     within('.link_item') do
       expect(page).to have_css('.read')
+
+      within('.read-status') do
+        expect(page).to have_text("true")
+      end
     end
   end
 

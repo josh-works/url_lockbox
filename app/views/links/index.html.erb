@@ -5,10 +5,10 @@
     <div class="link_item">
       <h3><%= link.title %></h3>
       <%= link_to link.url %>
-      <p>
-        Read status? <%= link.read %>
-      </p>
-      <%= button_to "Mark Link as Read", edit_link_path(link) %>
+      <div class="read-status">
+        Read status: <%= link.read %>
+      </div>
+      <%= button_to "Mark as Read", edit_link_path(link) %>
       <%= link_to "Edit Link", edit_link_path(link) %>
     </div>
   <% end %>
