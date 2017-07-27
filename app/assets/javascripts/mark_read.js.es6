@@ -18,6 +18,8 @@ function markAsRead(e) {
 function updateLinkStatus(link) {
   $(`.link_item[data-link-id=${link.id}]`).find(".read-status").text(link.read);
   $(`.link_item[data-link-id=${link.id}]`).addClass('read')
+  $(`.link_item[data-link-id=${link.id}]`).find('input')
+
 }
 
 function displayFailure(failureData){

@@ -9,12 +9,17 @@ RSpec.describe "user can mark links as read", js: true do
   end
 
   scenario "user can mark unread link as read" do
-    link = create(:link)
-    @user.links << link
+    link_title = "cool new link"
+    link_url = "https://www.new_link.com"
 
     visit root_path
-  
-    save_and_open_page
+
+    within('#create_new_link') do
+      fill_in('link[title]', with: link_title)
+      fill_in('link[url]', with: link_url)
+      click_on("Save Link")
+    end
+
     within('.link_item') do
       expect(page).to_not have_css('.read')
     end
@@ -25,7 +30,8 @@ RSpec.describe "user can mark links as read", js: true do
 
     click_on "Mark as Read"
 
-    within('.link_item') do
+    save_and_open_page
+    within('.links_list') do
       expect(page).to have_css('.read')
 
       within('.read-status') do
@@ -38,7 +44,7 @@ RSpec.describe "user can mark links as read", js: true do
 
     visit root_path
 
-    within('.links_list') do
+    within('.link_item') do
       expect(page).to have_css('.read')
       click_on("Mark Link as Unread")
 
