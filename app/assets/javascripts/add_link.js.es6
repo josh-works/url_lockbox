@@ -2,15 +2,17 @@ $( document ).ready(function(){
   $("#create_new_link").submit( function (event) {
     event.preventDefault()
     submitNewLink(event)
+    $(".flash_notices").append("FAILED attempt to update Link: " + failureData.responseText);
+
   })
+
 })
 
-function getFormData() {
-  console.log("get form data here");
+function resetForm() {
+  document.getElementById('new_link').reset()
 }
 
 function submitNewLink(e) {
-  console.log("submitting shit");
   e.preventDefault();
   var $link = $(this).parents('.link_item');
   var linkId = $link.data('link-id');
@@ -24,9 +26,8 @@ function submitNewLink(e) {
     type: "POST",
     url: "/api/v1/links/",
     data: { link },
-  }).done(function (newLinkMarkup) {
-    addLinkToList(newLinkMarkup)
-  });
+  }).then(addLinkToList)
+    .fail(displayFailure)
 }
 
 function addLinkToList(linkMarkup) {
@@ -34,7 +35,8 @@ function addLinkToList(linkMarkup) {
   // $(`.link_item[data-link-id=${link.id}]`).removeClass('read')
 }
 
-
 function displayFailure(failureData){
+  debugger
+  $(".flash_notices").text("FAILED attempt to update Link: " + failureData.responseText);
   console.log("FAILED attempt to update Link: " + failureData.responseText);
 }
