@@ -7,12 +7,16 @@ class LinksController < ApplicationController
 
   def create
     link = current_user.links.create(link_params)
-    binding.pry
-    if link.valid_url? && link.save
+    if link.save
       flash[:success] = "created new link"
       redirect_to links_path
     else
-      flash[:error] = "could not save link. please try again"
+      if link.errors.any?
+        link.errors.each do |attribute, message|
+          flash[:error] = "#{attribute.to_s} #{message}"
+        end
+      end
+      redirect_back(fallback_location: links_path)
     end
   end
 

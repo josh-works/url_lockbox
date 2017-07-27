@@ -1,15 +1,8 @@
 require 'uri'
 
 class Link < ActiveRecord::Base
-  include ActiveModel::Validations
-  validates_with UrlValidator
 
+  validates :url, :presence => true, :url => true
   validates :title, :url, presence: true
   belongs_to :user
-
-
-
-
-
-
 end

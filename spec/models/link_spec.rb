@@ -9,10 +9,15 @@ RSpec.describe Link do
       title = "test url"
       invalid_url = "www.google"
 
+      expect(Link.count).to eq(0)
+
       link = Link.new(title: title, url: invalid_url)
-      expect {link.save}.to raise_error(URI::InvalidURIError)
+      expect(link.save).to be_falsey
+
+      expect(Link.count).to eq(0)
 
     end
+
     it "should save valid URL" do
       title = "test url"
       valid_url = "http://google.com"
