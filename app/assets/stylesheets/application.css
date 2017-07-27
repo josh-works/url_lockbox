@@ -36,14 +36,13 @@ body {
 
 .links_list .link_item {
   width: 50%;
-  background-color: #e3e3e3;
-  border: 2px red;
-  margin: 10px;
-  height: 100px;
   border-radius: 10px;
   text-align: center;
 }
-.link_item div {
+.link_item {
+  margin: 10px;
+  height: 100px;
+  background-color: #e3e3e3;
   vertical-align: middle;
   position: relative;
 }

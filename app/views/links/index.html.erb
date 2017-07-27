@@ -5,9 +5,11 @@
   <%= render partial: "partials/read_link", locals: {link: link} %>
       <h3><%= link.title %></h3>
       <%= link_to link.url %>
-        Read status: <%= content_tag :span, "#{link.read}", class: "read-status" %>
+        <p>
+          Read status: <%= content_tag :span, "#{link.read}", class: "read-status" %>
+        </p>
       <div class="link_controlls">
-        <%= button_to "Mark as Read", edit_link_path(link), class: "mark-as-read"%>
+        <%= render partial: "partials/toggle_read_button", locals: {link: link} %>
         <%= link_to "Edit Link", edit_link_path(link) %>
       </div>
     </div>

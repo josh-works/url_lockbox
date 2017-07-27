@@ -9,7 +9,9 @@ describe 'LINKS API' do
 
   context 'PATCH /api/v1/links/' do
     it 'updates given link' do
+
       link = create(:link)
+      @user.links << link
 
       expect(link.read).to eq(false)
 
@@ -18,10 +20,12 @@ describe 'LINKS API' do
         read: true
       }
 
+
       patch "/api/v1/links/#{link.id}", params: params
-      expect(response.status).to be(200)
 
       updated_link = JSON.parse(response.body)
+      expect(response.status).to be(200)
+
       expect(updated_link["read"]).to eq(true)
       expect(Link.first.read).to eq(true)
 
