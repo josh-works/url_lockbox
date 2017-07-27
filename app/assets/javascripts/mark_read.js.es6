@@ -4,8 +4,7 @@ $( document ).ready(function(){
 
 function markAsRead(e) {
   e.preventDefault();
-
-  var $link = $(this).parents('.link');
+  var $link = $(this).parents('.link_item');
   var linkId = $link.data('link-id');
 
   $.ajax({
