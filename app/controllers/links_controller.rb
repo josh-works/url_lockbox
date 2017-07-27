@@ -5,7 +5,7 @@ class LinksController < ApplicationController
   def new
   end
 
-  def create
+  # def create
     # link = current_user.links.create(link_params)
     # if link.save
     #   flash[:success] = "created new link"
@@ -18,7 +18,7 @@ class LinksController < ApplicationController
     #   end
     #   redirect_back(fallback_location: links_path)
     # end
-  end
+  # end
 
   def index
     @link = Link.new

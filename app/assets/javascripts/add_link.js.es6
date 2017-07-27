@@ -36,7 +36,6 @@ function addLinkToList(linkMarkup) {
 }
 
 function displayFailure(failureData){
-  debugger
   $(".flash_notices").text("FAILED attempt to update Link: " + failureData.responseText);
   console.log("FAILED attempt to update Link: " + failureData.responseText);
 }

@@ -20,14 +20,14 @@ describe 'LINKS API' do
         read: true
       }
 
-
       patch "/api/v1/links/#{link.id}", params: params
 
       updated_link = JSON.parse(response.body)
+
       expect(response.status).to be(200)
 
       expect(updated_link["read"]).to eq(true)
-      expect(Link.first.read).to eq(true)
+      expect(@user.links.first.read).to eq(true)
 
     end
 
