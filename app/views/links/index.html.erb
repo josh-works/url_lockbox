@@ -8,6 +8,7 @@
       <p>
         Read status? <%= link.read %>
       </p>
+      <%= button_to "Mark Link as Read", edit_link_path(link) %>
       <%= link_to "Edit Link", edit_link_path(link) %>
     </div>
   <% end %>
