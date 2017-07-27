@@ -25,8 +25,29 @@ body {
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
  }
 
+div#brand {
+  width: 100%;
+}
+
+#brand {
+  width: 50%;
+  text-align: center;
+}
+
+
+#create_new_link {
+  display: block;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+#create_new_link > * {
+  width: 50%;
+  text-align: center;
+}
+
 .login_logout_bar {
-  margin-bottom: 30px;
+  padding: 10px 10px
 }
 
 .links_list {
