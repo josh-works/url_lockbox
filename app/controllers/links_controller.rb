@@ -5,20 +5,20 @@ class LinksController < ApplicationController
   def new
   end
 
-  def create
-    link = current_user.links.create(link_params)
-    if link.save
-      flash[:success] = "created new link"
-      redirect_to links_path
-    else
-      if link.errors.any?
-        link.errors.each do |attribute, message|
-          flash[:error] = "#{attribute.to_s} #{message}"
-        end
-      end
-      redirect_back(fallback_location: links_path)
-    end
-  end
+  # def create
+    # link = current_user.links.create(link_params)
+    # if link.save
+    #   flash[:success] = "created new link"
+    #   redirect_to links_path
+    # else
+    #   if link.errors.any?
+    #     link.errors.each do |attribute, message|
+    #       flash[:error] = "#{attribute.to_s} #{message}"
+    #     end
+    #   end
+    #   redirect_back(fallback_location: links_path)
+    # end
+  # end
 
   def index
     @link = Link.new

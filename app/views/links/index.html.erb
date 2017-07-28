@@ -1,17 +1,5 @@
 <%= render partial: "partials/add_new_link" %>
 
 <div class="links_list">
-  <% @links.each do |link| %>
-  <%= render partial: "partials/read_link", locals: {link: link} %>
-      <h3><%= link.title %></h3>
-      <%= link_to link.url %>
-        <p>
-          Read status: <%= content_tag :span, "#{link.read}", class: "read-status" %>
-        </p>
-      <div class="link_controlls">
-        <%= render partial: "partials/toggle_read_button", locals: {link: link} %>
-        <%= link_to "Edit Link", edit_link_path(link) %>
-      </div>
-    </div>
-  <% end %>
+  <%= render partial: "partials/links_index", locals: {links: @links} %>
 </div>

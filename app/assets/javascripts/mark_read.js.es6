@@ -21,11 +21,8 @@ function setLinkToUnread(link) {
   $(`.link_item[data-link-id=${link.id}]`).find('input').removeClass('mark-as-unread')
   $(`.link_item[data-link-id=${link.id}]`).find('input').addClass("mark-as-read")
   $(`.link_item[data-link-id=${link.id}]`).find('input').val("Mark as Read");
-
-
-
-
 }
+
 function markAsRead(e) {
   e.preventDefault();
   var $link = $(this).parents('.link_item');
