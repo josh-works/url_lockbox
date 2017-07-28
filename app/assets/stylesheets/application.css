@@ -82,6 +82,10 @@ div.read-status {
   text-decoration: line-through;
 }
 
+.hidden {
+  display: none;
+}
+
 
 /*
 .links_list {

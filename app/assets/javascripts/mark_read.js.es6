@@ -21,6 +21,9 @@ function setLinkToUnread(link) {
   $(`.link_item[data-link-id=${link.id}]`).find('input').removeClass('mark-as-unread')
   $(`.link_item[data-link-id=${link.id}]`).find('input').addClass("mark-as-read")
   $(`.link_item[data-link-id=${link.id}]`).find('input').val("Mark as Read");
+  $(`.link_item[data-link-id=${link.id}]`).find(".read-status").text(link.read);
+  $(`.link_item[data-link-id=${link.id}]`).attr('link-read',"false")
+
 }
 
 function markAsRead(e) {
@@ -42,6 +45,8 @@ function setLinkToRead(link) {
   $(`.link_item[data-link-id=${link.id}]`).find('input').addClass('mark-as-unread')
   $(`.link_item[data-link-id=${link.id}]`).find('input').removeClass("mark-as-read")
   $(`.link_item[data-link-id=${link.id}]`).find('input').val("Mark as Unread");
+  $(`.link_item[data-link-id=${link.id}]`).attr('linkRead',"true")
+
 
 }
 
