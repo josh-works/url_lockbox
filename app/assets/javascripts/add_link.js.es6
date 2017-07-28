@@ -2,6 +2,7 @@ $( document ).ready(function(){
   $("#create_new_link").submit( function (event) {
     event.preventDefault()
     submitNewLink(event)
+    // TRYING to reset the form fields/values/submit button w/ resetForm()
     resetForm()
   })
 
@@ -9,6 +10,7 @@ $( document ).ready(function(){
 
 function resetForm() {
   document.getElementById('new_link').reset()
+  // this was my last attempt to reset submit button, but no dice.
   $('#new_link_submit').prop('disabled', false);
 }
 
@@ -27,6 +29,7 @@ function submitNewLink(e) {
     url: "/api/v1/links/",
     data: { link },
   }).then(addLinkToList)
+    // not sure about displaying AJAX failures
     .fail(displayFailure)
 }
 
@@ -36,5 +39,7 @@ function addLinkToList(linkMarkup) {
 }
 
 function displayFailure(failureData){
+  // when I console logged this, it printed to console, and when I manually appended some text
+  // like "testing" to $('.flash_notices'), it worked, but the below didnt. 
   $(".flash_notices").text("FAILED attempt to update Link: " + failureData.responseText);
 }

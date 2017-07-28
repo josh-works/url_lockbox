@@ -17,6 +17,9 @@ function markAsUnread(e) {
 }
 
 function setLinkToUnread(link) {
+  // this is the "throw stuff at the wall and see what sticks" approach.
+  // I have no doubt that there is a one-line solution here. Better CSS + HTML structures
+  // and I would have been good, I suspect.
   $(`.link_item[data-link-id=${link.id}]`).removeClass('read')
   $(`.link_item[data-link-id=${link.id}]`).find('input').removeClass('mark-as-unread')
   $(`.link_item[data-link-id=${link.id}]`).find('input').addClass("mark-as-read")
@@ -46,8 +49,6 @@ function setLinkToRead(link) {
   $(`.link_item[data-link-id=${link.id}]`).find('input').removeClass("mark-as-read")
   $(`.link_item[data-link-id=${link.id}]`).find('input').val("Mark as Unread");
   $(`.link_item[data-link-id=${link.id}]`).attr('linkRead',"true")
-
-
 }
 
 function displayFailure(failureData){

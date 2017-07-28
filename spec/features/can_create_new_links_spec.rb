@@ -25,6 +25,7 @@ RSpec.describe "create new links for a user", js: true do
   end
 
   xit "should show error message with invalid URL" do
+    # skipped because... I couldn't rig up error messages from AJAX. :(
     link_title = "cool updated link"
     invalid_url = "www.new_link.com"
 

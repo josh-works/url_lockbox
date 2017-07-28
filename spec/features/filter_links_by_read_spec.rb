@@ -8,6 +8,10 @@ RSpec.describe "link filter", js: true do
   end
 
   xit "can filter links by read status" do
+    # couldn't run this test, because create(:user_with_links) wasn't working...
+    # user's links wouldn't show up on root path!
+    # I think it's related to:
+    # https://stackoverflow.com/questions/15938147/factorygirl-creations-dont-show-up-in-selenium-tests
     visit root_path
 
     save_and_open_page

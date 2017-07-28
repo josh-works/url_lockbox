@@ -14,12 +14,12 @@ $( document ).ready(function(){
   })
 })
 
-
+// all of this class adding/removing was crap. Should have just toggled a status
+// some how. It broke because (I think) any item might have the same class added
+// twice, or removed a class that didn't exist. This was a most... inelegant attempt
 function hideUnreadLinks() {
-
   $('.link_item[data-link-read="true"]').addClass('hidden')
   $('.link_item[data-link-read="false"]').removeClass('hidden')
-
 }
 
 function hideReadLinks() {

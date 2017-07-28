@@ -22,6 +22,7 @@ class Api::V1::LinksController < ApplicationController
 
   private
 
+  # first time ever using double strong params...
   def link_params
     params.permit(:title, :url, :id, :read)
   end
