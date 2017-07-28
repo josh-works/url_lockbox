@@ -2,14 +2,14 @@ $( document ).ready(function(){
   $("#create_new_link").submit( function (event) {
     event.preventDefault()
     submitNewLink(event)
-    $(".flash_notices").append("FAILED attempt to update Link: " + failureData.responseText);
-
+    resetForm()
   })
 
 })
 
 function resetForm() {
   document.getElementById('new_link').reset()
+  $('#new_link_submit').prop('disabled', false);
 }
 
 function submitNewLink(e) {
@@ -37,5 +37,4 @@ function addLinkToList(linkMarkup) {
 
 function displayFailure(failureData){
   $(".flash_notices").text("FAILED attempt to update Link: " + failureData.responseText);
-  console.log("FAILED attempt to update Link: " + failureData.responseText);
 }
