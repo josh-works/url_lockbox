@@ -1,5 +1,12 @@
 <%= render partial: "partials/add_new_link" %>
 
+
+<div class="filter_links">
+  <h3>Filter links by: </h3>
+  <%= button_to "Only Unread Links", root_path, class: "filter-unread" %>
+  <%= button_to "Only Read Links", root_path, class: "filter-read" %>
+  <%= button_to "Show All Links", root_path, class: "filter-none" %>
+</div>
 <div class="links_list">
   <%= render partial: "partials/links_index", locals: {links: @links} %>
 </div>
