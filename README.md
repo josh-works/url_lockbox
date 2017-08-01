@@ -1,4 +1,37 @@
-# URL Lockbox, Mod 4 BEE Final Assessment
+## Setup for FEE URL Lockbox
+
+It's easy to get started using/testing this repo:
+
+```shell
+# clone it down
+$ git clone git@github.com:josh-works/url_lockbox.git
+
+# cd into it
+$ cd url_lockbox
+
+# bundle install
+$ bundle
+
+# setup DB
+$ rake db:create
+$ rake db:migrate
+
+# seed dev environment
+$ rake db:seed
+
+# run tests
+$ rspec
+
+# run in localhost
+$ rails s
+```
+
+That's it. Enjoy your poking around of the app!
+
+
+-----------------------------
+
+# Josh Thompson's notes on end-of-mod assessment
 
 
 ## TDD
