@@ -31,9 +31,13 @@ function submitNewLink(e) {
     data: { link },
   })
   .done(function(markup) {
-    $('.flash_notices').text(markup)
+    if(markup.includes("div")) {
+      addLinkToList(markup)
 
-    console.log(markup);
+    } else {
+      $('.flash_notices').text(markup)
+      console.log(markup);
+    }
   })
 }
 

@@ -7,7 +7,7 @@ RSpec.describe "link filter", js: true do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
   end
 
-  xit "can filter links by read status" do
+  it "can filter links by read status" do
     # couldn't run this test, because create(:user_with_links) wasn't working...
     # user's links wouldn't show up on root path!
     # I think it's related to:
