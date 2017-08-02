@@ -1,4 +1,3 @@
-<!-- I don't think this was the right way to handle this. a data attribute on the entire element would have been better -->
 <% if !link.read %>
   <%= button_to "Mark as Read", edit_link_path(link), class: "mark-as-read"%>
 <% else %>

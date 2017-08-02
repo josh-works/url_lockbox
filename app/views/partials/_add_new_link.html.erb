@@ -2,7 +2,6 @@
 <div id="create_new_link">
   <h3>Lets store some links!</h3>
   <%= form_for @link do |f| %>
-    <!-- <%#= form_for :user, url: '/users' do |f| %> -->
     Title: <%= f.text_field :title %>
     URL: <%= f.text_field :url %>
     <%= f.submit "Save Link", id: "new_link_submit"%>

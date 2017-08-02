@@ -28,9 +28,12 @@ function submitNewLink(e) {
     type: "POST",
     url: "/api/v1/links/",
     data: { link },
-  }).then(addLinkToList)
-    // not sure about displaying AJAX failures
-    .fail(displayFailure)
+  })
+  .done(function(markup) {
+    $('.flash_notices').text(markup)
+    
+    console.log(markup);
+  })
 }
 
 function addLinkToList(linkMarkup) {
@@ -40,6 +43,6 @@ function addLinkToList(linkMarkup) {
 
 function displayFailure(failureData){
   // when I console logged this, it printed to console, and when I manually appended some text
-  // like "testing" to $('.flash_notices'), it worked, but the below didnt. 
+  // like "testing" to $('.flash_notices'), it worked, but the below didnt.
   $(".flash_notices").text("FAILED attempt to update Link: " + failureData.responseText);
 }

@@ -22,8 +22,7 @@ function filterByText() {
     var text = $(this).children().val()
     var links = $('.link_item')
     var regex = new RegExp(text, 'gi')
-
-
+    
     links.map(function() {
       var title = $(this).find('h3').html()
       var url = $(this).find('a').html()
@@ -31,10 +30,7 @@ function filterByText() {
       if (title.match(regex) || url.match(regex)){
         this.style.display = ''
       }
-
     })
-
-
   })
 }
 
