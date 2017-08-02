@@ -2,7 +2,6 @@ class Api::V1::LinksController < ApplicationController
 
 
   def create
-
     @link = current_user.links.new(new_link_params)
     if @link.update_attributes(new_link_params)
       render partial: 'partials/single_new_link', locals: {link: @link}, layout: false

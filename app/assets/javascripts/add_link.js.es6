@@ -1,18 +1,18 @@
 $( document ).ready(function(){
-  $("#create_new_link").submit( function (event) {
-    event.preventDefault()
+  $("#new_link_submit").click(function (event) {
+    event.preventDefault();
     submitNewLink(event)
     // TRYING to reset the form fields/values/submit button w/ resetForm()
-    resetForm()
+    // resetForm()
   })
 
 })
-
-function resetForm() {
-  document.getElementById('new_link').reset()
-  // this was my last attempt to reset submit button, but no dice.
-  $('#new_link_submit').prop('disabled', false);
-}
+//
+// function resetForm() {
+//   document.getElementById('new_link').reset()
+//   // this was my last attempt to reset submit button, but no dice.
+//   $('#new_link_submit').prop('disabled', false);
+// }
 
 function submitNewLink(e) {
   e.preventDefault();
@@ -23,6 +23,7 @@ function submitNewLink(e) {
     title: $("#link_title").val(),
     url: $('#link_url').val()
   }
+  $('.flash_notices').text('')
 
   $.ajax({
     type: "POST",
@@ -31,7 +32,7 @@ function submitNewLink(e) {
   })
   .done(function(markup) {
     $('.flash_notices').text(markup)
-    
+
     console.log(markup);
   })
 }

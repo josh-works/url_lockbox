@@ -2,8 +2,8 @@ class LinksController < ApplicationController
 
   before_action :authorize
 
-  def new
-  end
+  # def new
+  # end
 
   def index
     @link = Link.new
@@ -35,6 +35,6 @@ class LinksController < ApplicationController
     def link_params
       params.require(:link).permit(:title, :url, :id)
     end
-  
+
 
 end

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'\
 
 
-  resources :links, only: [:index, :create, :update, :edit]
+  resources :links, only: [:index, :update, :edit]
 
   namespace :api do
     namespace :v1 do
